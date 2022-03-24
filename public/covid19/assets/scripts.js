@@ -13,7 +13,23 @@ const getData = async () => {
     console.error(`Error: ${err}`)
   }
 }
-// Informacion de la API
+// getContries
+const getContries = async (coutry) => {
+  try {
+    const response = await fetch(`http://localhost:3000/api/countries/${coutry}`, {
+      method: 'GET',
+      headers: {
+      },
+    })
+    const { data } = await response.json()
+    return data
+  } catch (err) {
+    console.error(`Error: ${err}`)
+  }
+  
+}
+
+// Informacion de la API - funcion IIFE
 ;(async () => {
   const data = await getData()
   const moreThanTenThousand = data.filter((cases) => cases.confirmed > 2000000)
@@ -83,4 +99,29 @@ const myChart = new Chart(ctx, {
 
   console.log (graph)
   //------------------
+  const creaTabla = (array) => {
+    const tabla = document.querySelector('#table')
+    let col = `
+             <tr>
+                <th scope="col">LOCATION</th>
+                <th scope="col">CONFIRMED</th>
+                <th scope="col">DEATHS</th>
+                <th scope="col">RECOVERED</th>
+                <th scope="col">ACTIVE</th>
+                <th scope="col">DETAILS</th>
+             </tr>`
+    for (i = 0; i < array.length; i++) {
+       const row = `<tr>
+             <td>${array[i].location}</td>
+             <td>${array[i].confirmed}</td>
+             <td>${array[i].deaths}</td>
+             <td>${array[i].recovered}</td>
+             <td>${array[i].active}</td>
+          <tr>`
+       col = col + row
+       tabla.innerHTML = col
+    }
+ }
+ creaTabla(moreThanTenThousand)
+ console.log(await getContries('Bolivia'))
 })()
