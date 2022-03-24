@@ -117,6 +117,7 @@ const myChart = new Chart(ctx, {
              <td>${array[i].deaths}</td>
              <td>${array[i].recovered}</td>
              <td>${array[i].active}</td>
+             <td><a>ver detalle</a></td><a></a>
           <tr>`
        col = col + row
        tabla.innerHTML = col
