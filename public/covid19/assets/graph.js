@@ -1,3 +1,4 @@
+// bar chart
 export const barChart = (
 	countriesList,
 	confirmed,
@@ -49,32 +50,30 @@ export const barChart = (
 	return myChart
 }
 
-// export const modalGraph = (confirmed, deaths) => {
-// 	const ctx2 = document.getElementById('myChart2').getContext('2d')
-// 	const myChart2 = new Chart(ctx2, {
-// 		type: 'pie',
-// 		data: {
-// 			labels: ['Confirmed', 'Deaths'],
-// 			datasets: [
-// 				{
-// 					label: '# of Votes',
-// 					data: [confirmed, deaths],
-// 					backgroundColor: [
-// 						'rgba(226, 125, 10, 0.2)',
-// 						'rgba(132, 207, 71, 0.2)',
-// 					],
-// 					borderColor: ['rgba(226, 125, 10, 1)', 'rgba(132, 207, 71, 1)'],
-// 					borderWidth: 1,
-// 				},
-// 			],
-// 		},
-// 		options: {
-// 			scales: {
-// 				y: {
-// 					beginAtZero: true,
-// 				},
-// 			},
-// 		},
-// 	})
-// 	return myChart2
-// }
+// pie chart
+export const modalGraph = (confirmed, deaths, recovered, active) => {
+	const ctx2 = document.getElementById('myChart2').getContext('2d')
+	const myChart2 = new Chart(ctx2, {
+		type: 'pie',
+		data: {
+			labels: ['Confirmed', 'Deaths', 'recovered', 'active'],
+			datasets: [
+				{
+					label: '',
+					data: [confirmed, deaths, recovered, active],
+					backgroundColor: ['#f5d33de0', '#e72626d0', '#90f74ce0', '#f3943cef'],
+					borderColor: ['#f5d33de0', '#e72626d0', '#90f74ce0', 'f3943cef'],
+					borderWidth: 1,
+				},
+			],
+		},
+		options: {
+			scales: {
+				y: {
+					beginAtZero: true,
+				},
+			},
+		},
+	})
+	return myChart2
+}

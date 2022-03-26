@@ -1,26 +1,23 @@
-.color-gris {
+.navbar-color {
 	background-color: #4f7cac;	
 }
 body{
 	background-color: #c0e0de;
 	color: #3c474b;
 	font-family: 'Roboto', sans-serif;
-	font-size: 3 rem;
 }
-h1{
+h1, h2{
 	color: #4f7cac;
 }
-.hola{
-	display: flex;
-	justify-content:space-between;
-	justify-items: end;
-}
-#btn-link{
-	color: rgb(0, 0, 0);
+.btn-link{
+	background-color: none;
+	color: black;
 	transition: 250ms ease-in-out;
-
+	text-decoration: none;
 }
-#btn-link:hover{
-	color: #4f7cac;
+.btn-link:hover{
+	background-color: none;
+	color: rgb(95, 195, 70);
+	background-color: rgb(174, 218, 215);
+	transform: translateY(-5px);
 }
-

@@ -1,12 +1,7 @@
 // getData
 export const getData = async () => {
 	try {
-		const response = await fetch('http://localhost:3000/api/total', {
-			method: 'GET',
-			headers: {
-				//Authorization: `Bearer ${jwt}`,
-			},
-		})
+		const response = await fetch('http://localhost:3000/api/total')
 		const { data } = await response.json()
 		return data
 	} catch (err) {
@@ -14,14 +9,10 @@ export const getData = async () => {
 	}
 }
 
-export const getContries = async (coutry) => {
+export const getContries = async (country) => {
 	try {
 		const response = await fetch(
-			`http://localhost:3000/api/countries/${coutry}`,
-			{
-				method: 'GET',
-				headers: {},
-			}
+			`http://localhost:3000/api/countries/${country}`
 		)
 		const { data } = await response.json()
 		return data
@@ -29,4 +20,3 @@ export const getContries = async (coutry) => {
 		console.error(`Error: ${err}`)
 	}
 }
-

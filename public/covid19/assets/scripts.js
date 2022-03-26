@@ -1,25 +1,26 @@
 import { getData, getContries } from './apicall.js'
-import { barChart } from './modalgraph.js'
+import { barChart, modalGraph } from './graph.js'
 
+// selectores
 const modalItemTitleSelector = document.querySelector('#modal-item-title')
-const closeBtnModalSelector = [...document.querySelectorAll('.close-btn-modal')]
-const modalFade = document.querySelector('#exampleModal')
+const closeBtnModalSelector = document.querySelectorAll('.close-btn-modal')
+const tableSelector = document.querySelector('#table')
 
-// Informacion de la API - funcion IIFE
+// function iife
 ;(async () => {
+	// filtrando datos
 	const data = await getData()
-	const moreThanTenThousand = data.filter((cases) => cases.confirmed > 6000000)
-	const countriesList = moreThanTenThousand.map((location) => location.location)
-	const confirmed = moreThanTenThousand.map((p) => p.confirmed)
-	const deaths = moreThanTenThousand.map((p) => p.deaths)
-	const recovered = moreThanTenThousand.map((p) => p.recovered)
-	const active = moreThanTenThousand.map((p) => p.active)
+	const filteredData = data.filter((cases) => cases.confirmed > 6000000)
+	const countriesList = filteredData.map((location) => location.location)
+	const confirmed = filteredData.map((p) => p.confirmed)
+	const deaths = filteredData.map((p) => p.deaths)
+	const recovered = filteredData.map((p) => p.recovered)
+	const active = filteredData.map((p) => p.active)
 
-	// Gráfico
+	// Mostrando grafico de barra con sus datos
 	barChart(countriesList, confirmed, deaths, recovered, active)
-	//------------------
-	const creaTabla = (array) => {
-		const tabla = document.querySelector('#table')
+	// creando table y sus datos
+	const createTable = (array) => {
 		let col = `
 				<tr>
 					<th scope="col">LOCATION</th>
@@ -37,61 +38,46 @@ const modalFade = document.querySelector('#exampleModal')
 				<td>${array[i].recovered}</td>
 				<td>${array[i].active}</td>
 				<td>
-				<button data-location="${array[i].location}" class="btn btn-link boton-modal" id="btn-link">Ver detalles</button></td>
+				<button data-location="${array[i].location}" class="btn btn-link boton-modal">Ver detalles</button></td>
 			<tr>`
 			col += row
-			tabla.innerHTML = col
+			tableSelector.innerHTML = col
 		}
+		// seleccion de los botones 
 		const btns = document.querySelectorAll('.boton-modal')
-		btns.forEach((element) => {
-			element.addEventListener('click', async (e) => {
+		// agregando event listener a cada boton
+		btns.forEach((btn) => {
+			btn.addEventListener('click', async (e) => {
+				// guardando el pais del dataset en una variable
 				const location = e.target.dataset.location
-				var myModal = new bootstrap.Modal(
-					document.getElementById('exampleModal')
+				const myModal = new bootstrap.Modal(
+					document.getElementById('modal-country'),
+					{
+						keyboard: false,
+						backdrop: false
+					}
 				)
+				// muestra modal
 				myModal.show()
+				// titulo del modal
 				modalItemTitleSelector.innerHTML = location
+				// llamando al api, pasando el nombre del pais y guardando en una variable
 				const countryData = await getContries(location)
-				const { confirmed, deaths,recovered, active } = countryData
+				// destructuring a la variable countryData
+				const { confirmed, deaths, recovered, active } = countryData
+				// Adriana explicara esto:
+				const graphModal = modalGraph(confirmed, deaths, recovered, active)
 
-				const ctx2 = document.getElementById('myChart2').getContext('2d')
-				const myChart2 = new Chart(ctx2, {
-					type: 'pie',
-					data: {
-						labels: ['Confirmed', 'Deaths', 'recovered', 'active' ],
-						datasets: [
-							{
-								label: '# of Votes',
-								data: [confirmed, deaths, recovered, active],
-								backgroundColor: [
-									'#f5d33de0',
-									'#e72626d0',
-                  '#90f74ce0',
-                  '#f3943cef',
-								],
-								borderColor: ['#f5d33de0', '#e72626d0','#90f74ce0','f3943cef'],
-								borderWidth: 1,
-							},
-						],
-					},
-					options: {
-						scales: {
-							y: {
-								beginAtZero: true,
-							},
-						},
-					},
-				})
-				closeBtnModalSelector.forEach(element => {
+				// event listener a los botones que cierrran el modal
+				// para destruir el grafico y poder actualizarlo
+				closeBtnModalSelector.forEach((element) => {
 					element.addEventListener('click', () => {
-						myChart2.destroy()
+						graphModal.destroy()
 					})
-				});
-				modalFade.addEventListener('click', () =>{
-					myChart2.destroy()
 				})
 			})
 		})
 	}
-	creaTabla(moreThanTenThousand)
+	// creando table
+	createTable(filteredData)
 })()
