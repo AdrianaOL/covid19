@@ -65,7 +65,6 @@ const tableSelector = document.querySelector('#table')
 				const countryData = await getContries(location)
 				// destructuring a la variable countryData
 				const { confirmed, deaths, recovered, active } = countryData
-				// Adriana explicara esto:
 				const graphModal = modalGraph(confirmed, deaths, recovered, active)
 
 				// event listener a los botones que cierrran el modal
