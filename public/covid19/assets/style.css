@@ -1,3 +1,26 @@
 .color-gris {
-	background-color: #373a3c;
+	background-color: #4f7cac;	
 }
+body{
+	background-color: #c0e0de;
+	color: #3c474b;
+	font-family: 'Roboto', sans-serif;
+	font-size: 3 rem;
+}
+h1{
+	color: #4f7cac;
+}
+.hola{
+	display: flex;
+	justify-content:space-between;
+	justify-items: end;
+}
+#btn-link{
+	color: rgb(0, 0, 0);
+	transition: 250ms ease-in-out;
+
+}
+#btn-link:hover{
+	color: #4f7cac;
+}
+

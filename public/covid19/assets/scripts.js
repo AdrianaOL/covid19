@@ -8,7 +8,7 @@ const modalFade = document.querySelector('#exampleModal')
 // Informacion de la API - funcion IIFE
 ;(async () => {
 	const data = await getData()
-	const moreThanTenThousand = data.filter((cases) => cases.confirmed > 2000000)
+	const moreThanTenThousand = data.filter((cases) => cases.confirmed > 6000000)
 	const countriesList = moreThanTenThousand.map((location) => location.location)
 	const confirmed = moreThanTenThousand.map((p) => p.confirmed)
 	const deaths = moreThanTenThousand.map((p) => p.deaths)
@@ -37,7 +37,7 @@ const modalFade = document.querySelector('#exampleModal')
 				<td>${array[i].recovered}</td>
 				<td>${array[i].active}</td>
 				<td>
-				<button data-location="${array[i].location}" class="btn btn-link boton-modal text-white">Ver detalles</button></td>
+				<button data-location="${array[i].location}" class="btn btn-link boton-modal" id="btn-link">Ver detalles</button></td>
 			<tr>`
 			col += row
 			tabla.innerHTML = col
@@ -52,22 +52,24 @@ const modalFade = document.querySelector('#exampleModal')
 				myModal.show()
 				modalItemTitleSelector.innerHTML = location
 				const countryData = await getContries(location)
-				const { confirmed, deaths } = countryData
+				const { confirmed, deaths,recovered, active } = countryData
 
 				const ctx2 = document.getElementById('myChart2').getContext('2d')
 				const myChart2 = new Chart(ctx2, {
 					type: 'pie',
 					data: {
-						labels: ['Confirmed', 'Deaths'],
+						labels: ['Confirmed', 'Deaths', 'recovered', 'active' ],
 						datasets: [
 							{
 								label: '# of Votes',
-								data: [confirmed, deaths],
+								data: [confirmed, deaths, recovered, active],
 								backgroundColor: [
-									'rgba(226, 125, 10, 0.2)',
-									'rgba(132, 207, 71, 0.2)',
+									'#f5d33de0',
+									'#e72626d0',
+                  '#90f74ce0',
+                  '#f3943cef',
 								],
-								borderColor: ['rgba(226, 125, 10, 1)', 'rgba(132, 207, 71, 1)'],
+								borderColor: ['#f5d33de0', '#e72626d0','#90f74ce0','f3943cef'],
 								borderWidth: 1,
 							},
 						],

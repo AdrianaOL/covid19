@@ -2,136 +2,136 @@
     "data": [
         {
             "location": "US",
-            "confirmed": 19803443,
-            "deaths": 973213,
-            "recovered": 236580,
-            "active": 100000
+            "confirmed": 25803443,
+            "deaths": 6803443,
+            "recovered": 11803443,
+            "active": 9803443
         },
         {
             "location": "India",
-            "confirmed": 43012749,
-            "deaths": 516605,
-            "recovered": 9999999,
-            "active": 0
+            "confirmed": 19012749,
+            "deaths": 5003443,
+            "recovered": 6803443,
+            "active": 11803443
         },
         {
             "location": "Brazil",
-            "confirmed": 29691641,
-            "deaths": 658005,
-            "recovered": 0,
-            "active": 0
+            "confirmed": 11691641,
+            "deaths": 5003443,
+            "recovered": 2003443,
+            "active": 8003443
         },
         {
             "location": "France",
             "confirmed": 24528957,
-            "deaths": 142248,
-            "recovered": 0,
-            "active": 0
+            "deaths": 3003443,
+            "recovered": 1003443,
+            "active": 1203443
         },
         {
             "location": "United Kingdom",
-            "confirmed": 20566021,
-            "deaths": 164516,
-            "recovered": 0,
-            "active": 0
+            "confirmed":12691641 ,
+            "deaths": 4503443,
+            "recovered": 1603043,
+            "active": 3003443
         },
         {
             "location": "Germany",
             "confirmed": 19058757,
-            "deaths": 127214,
-            "recovered": 0,
-            "active": 0
+            "deaths": 3003443,
+            "recovered": 2203443,
+            "active": 803443
         },
         {
             "location": "Russia",
             "confirmed": 17382051,
             "deaths": 358093,
-            "recovered": 0,
-            "active": 0
+            "recovered": 2203443,
+            "active": 603443
         },
         {
             "location": "Turkey",
             "confirmed": 14726276,
-            "deaths": 97437,
-            "recovered": 0,
-            "active": 0
+            "deaths": 303443,
+            "recovered":5003443 ,
+            "active": 4003443
         },
         {
             "location": "Italy",
             "confirmed": 13992092,
-            "deaths": 158101,
-            "recovered": 125847,
-            "active": 368540
+            "deaths": 2003443,
+            "recovered": 3003443,
+            "active": 503403
         },
         {
             "location": "Spain",
             "confirmed": 11378784,
-            "deaths": 102053,
-            "recovered": 0,
-            "active": 0
+            "deaths": 803443,
+            "recovered": 1003443,
+            "active": 1303443
         },
         {
             "location": "Korea, South",
             "confirmed": 10427247,
-            "deaths": 13432,
-            "recovered": 0,
-            "active": 0
+            "deaths": 2003443,
+            "recovered": 4003443,
+            "active": 1303443
         },
         {
             "location": "Argentina",
             "confirmed": 9016057,
-            "deaths": 127675,
-            "recovered": 0,
-            "active": 0
+            "deaths": 2203443,
+            "recovered": 7403443,
+            "active": 1103443
         },
         {
             "location": "Vietnam",
             "confirmed": 8338914,
-            "deaths": 42014,
-            "recovered": 0,
-            "active": 0
+            "deaths": 603443,
+            "recovered": 1403443,
+            "active": 5003443
         },
         {
             "location": "Netherlands",
             "confirmed": 7759372,
-            "deaths": 22435,
-            "recovered": 0,
-            "active": 0
+            "deaths": 1403443,
+            "recovered": 8003443,
+            "active": 2003443
         },
         {
             "location": "Iran",
             "confirmed": 7143409,
-            "deaths": 139735,
-            "recovered": 222212,
-            "active": 139852
+            "deaths": 103443,
+            "recovered": 2203443,
+            "active": 103443
         },
         {
             "location": "Japan",
             "confirmed": 6148049,
-            "deaths": 27251,
-            "recovered": 0,
-            "active": 0
+            "deaths": 2003443,
+            "recovered": 3003443,
+            "active": 2203443
         },
         {
             "location": "Colombia",
             "confirmed": 6081933,
-            "deaths": 139489,
-            "recovered": 0,
-            "active": 0
+            "deaths": 1003443,
+            "recovered": 4003443,
+            "active": 1103443
         },
         {
             "location": "Indonesia",
             "confirmed": 5974646,
-            "deaths": 154062,
-            "recovered": 0,
-            "active": 0
+            "deaths": 1203443,
+            "recovered": 803443,
+            "active": 1003443
         },
         {
             "location": "Poland",
             "confirmed": 5905463,
-            "deaths": 114355,
-            "recovered": 0,
-            "active": 0
+            "deaths": 2003443,
+            "recovered": 1403443,
+            "active": 1703443
         },
         {
             "location": "Mexico",

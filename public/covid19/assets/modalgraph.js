@@ -12,28 +12,28 @@ export const barChart = (
 			labels: countriesList,
 			datasets: [
 				{
-					label: 'Casos Activos',
+					label: 'Confirmados',
 					data: confirmed,
-					borderColor: 'red',
-					backgroundColor: 'red',
+					borderColor: '#f5d33de0',
+					backgroundColor: '#f5d33de0',
 				},
 				{
 					label: 'Muertos',
 					data: deaths,
-					borderColor: 'blue',
-					backgroundColor: 'blue',
+					borderColor: '#e72626d0',
+					backgroundColor: '#e7262696',
 				},
 				{
 					label: 'Recuperados',
 					data: recovered,
-					borderColor: 'yellow',
-					backgroundColor: 'yellow',
+					borderColor: '#90f74ce0',
+					backgroundColor: '#90f74ce0',
 				},
 				{
 					label: 'Activos',
 					data: active,
-					borderColor: 'green',
-					backgroundColor: 'green',
+					borderColor: '#f3943cef',
+					backgroundColor: '#f3943cef',
 				},
 			],
 		},
@@ -42,10 +42,6 @@ export const barChart = (
 			plugins: {
 				legend: {
 					position: 'top',
-				},
-				title: {
-					display: true,
-					text: 'Casos Covid19',
 				},
 			},
 		},
