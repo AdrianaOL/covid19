@@ -22,22 +22,32 @@
 		<link rel="stylesheet" href="assets/style.css" />
 	</head>
 	<body>
-
 		<!-- As a heading -->
-		<nav class="navbar navbar-light navbar-color">
-			<div class="container">
-				<span class="navbar-brand mb-0 h1 text-white">Covid 19</span>
-			</div>
-		</nav>
+		<header>
+			<nav class="navbar navbar-light navbar-color">
+				<div class="container">
+					<span class="navbar-brand mb-0 h1 text-white">Covid 19</span>
+				</div>
+			</nav>
+		</header>
 		<!--Gráfico-->
-		<div class="container mt-5 mb-5">
+		<section class="container mt-5 mb-5">
 			<h1 class="text-center">Casos Covid 19</h1>
 			<canvas id="myChart" width="400" height="400"></canvas>
-		</div>
-		<div class="container"><hr>
-			<h2 class="text-center my-3">Datos Covid-19 por pais</h2><hr>
+		</section>
+		<section class="container">
+			<hr />
+			<h2 class="text-center my-3">Datos Covid-19 por pais</h2>
+			<hr />
 			<table class="table table-hover border-dark" id="table"></table>
-		</div>
+		</section>
+		<footer class="navbar-color py-3 mt-5 text-center" id="footer">
+			<div class="container">
+				<h5 class="text-white text-center">
+					Hito 1 - Situación Mundial. &copy;2022
+				</h5>
+			</div>
+		</footer>
 		<!-- Modal -->
 		<div
 			class="modal fade"
@@ -54,7 +64,7 @@
 						<h5 class="modal-title" id="modal-item-title"></h5>
 						<button
 							type="button"
-							class="btn-close close-btn-modal "
+							class="btn-close close-btn-modal"
 							data-bs-dismiss="modal"
 							aria-label="Close"
 						></button>
