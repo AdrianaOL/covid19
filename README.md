@@ -18,6 +18,6 @@
 - [Google Fonts](https://fonts.google.com/) - Librerias de typografias de codigo abierto.
 
 ## Integrantes:
-- Campuzano Diego
-- Cortes Kika
-- Oviedo Adriana
+- Adriana Oviedo 
+- Kika Cortes
+- Diego Campuzano
