@@ -1,10 +1,16 @@
-import { getData, getContries } from './apicall.js'
+import { getData, getContries, postData } from './apicall.js'
 import { barChart, modalGraph } from './graph.js'
+import { getValueByElement } from './functions.js'
 
 // selectores
 const modalItemTitleSelector = document.querySelector('#modal-item-title')
 const closeBtnModalSelector = document.querySelectorAll('.close-btn-modal')
 const tableSelector = document.querySelector('#table')
+const logInSelector = document.querySelector('#log-in')
+const formSelector = document.querySelector('#form-log-in')
+const logInToggle = document.querySelector('#log-in')
+const logOutToggle = document.querySelector('#log-out')
+const chileSituationToggle = document.querySelector('#chile-situation')
 
 // function iife
 ;(async () => {
@@ -17,6 +23,39 @@ const tableSelector = document.querySelector('#table')
 	const recovered = filteredData.map((p) => p.recovered)
 	const active = filteredData.map((p) => p.active)
 
+	// event listener para abrir modal login
+	logInSelector.addEventListener('click', () => {
+		const myModal2 = new bootstrap.Modal(
+			document.getElementById('modal-login'),
+			{
+				keyboard: false,
+				backdrop: false,
+			}
+		)
+		// muestra modal
+		myModal2.show()
+		formSelector.addEventListener('submit',async (e) => {
+			e.preventDefault()
+			const mail = getValueByElement('#mail')
+			const password = getValueByElement('#password')
+			const token = await postData(mail, password)
+			if (token){
+				logInToggle.classList.add('d-none')
+				logOutToggle.classList.toggle('d-none')
+				chileSituationToggle.classList.toggle('d-none')
+		
+			}
+			logOutToggle.addEventListener('click', () => {
+				localStorage.clear()
+				location.reload()
+			})
+			setTimeout(() => {
+				myModal2.hide()
+			}, 500);
+			
+			
+		})
+	})
 	// Mostrando grafico de barra con sus datos
 	barChart(countriesList, confirmed, deaths, recovered, active)
 	// creando table y sus datos
@@ -43,7 +82,7 @@ const tableSelector = document.querySelector('#table')
 			col += row
 			tableSelector.innerHTML = col
 		}
-		// seleccion de los botones 
+		// seleccion de los botones
 		const btns = document.querySelectorAll('.boton-modal')
 		// agregando event listener a cada boton
 		btns.forEach((btn) => {
@@ -54,7 +93,7 @@ const tableSelector = document.querySelector('#table')
 					document.getElementById('modal-country'),
 					{
 						keyboard: false,
-						backdrop: false
+						backdrop: false,
 					}
 				)
 				// muestra modal
