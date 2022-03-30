@@ -34,27 +34,24 @@ const chileSituationToggle = document.querySelector('#chile-situation')
 		)
 		// muestra modal
 		myModal2.show()
-		formSelector.addEventListener('submit',async (e) => {
+		formSelector.addEventListener('submit', async (e) => {
 			e.preventDefault()
 			const mail = getValueByElement('#mail')
 			const password = getValueByElement('#password')
 			const token = await postData(mail, password)
-			if (token){
-				logInToggle.classList.add('d-none')
+			if (token) {
+				logInToggle.classList.toggle('d-none')
 				logOutToggle.classList.remove('d-none')
 				chileSituationToggle.classList.remove('d-none')
-		
 			}
-			logOutToggle.addEventListener('click', () => {
-				localStorage.clear()
-				location.reload()
-			})
 			setTimeout(() => {
 				myModal2.hide()
-			}, 500);
-			
-			
+			}, 500)
 		})
+	})
+	logOutToggle.addEventListener('click', () => {
+		localStorage.clear()
+		location.reload()
 	})
 	// Mostrando grafico de barra con sus datos
 	barChart(countriesList, confirmed, deaths, recovered, active)
@@ -118,4 +115,13 @@ const chileSituationToggle = document.querySelector('#chile-situation')
 	}
 	// creando table
 	createTable(filteredData)
+	// create iife
+	;(() => {
+		const jwt = localStorage.getItem('jwt')
+		if (jwt) {
+			logInToggle.classList.add('d-none')
+			logOutToggle.classList.remove('d-none')
+			chileSituationToggle.classList.remove('d-none')
+		}
+	})()
 })()

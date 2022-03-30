@@ -78,6 +78,45 @@ export const modalGraph = (confirmed, deaths, recovered, active) => {
 	return myChart2
 }
 
+export const lineChart = (deathsDate,deathsTotal,confirmedTotal,recoveredTotal) => {
+	const ctx2 = document.getElementById('line-chart').getContext('2d')
+	const labels = deathsDate
+	const myChart3 = new Chart(ctx2, {
+		type: 'line',
+		data: {
+			labels: labels,
+			datasets: [
+				{
+					label: 'Muertos',
+					data: deathsTotal,
+					borderColor: '#f5d33de0',
+					backgroundColor: '#f5d33de0',
+				},
+				{
+					label: 'Confirmados',
+					data: confirmedTotal,
+					borderColor: '#e72626d0',
+					backgroundColor: '#e7262696',
+				},
+				{
+					label: 'Recuperados',
+					data: recoveredTotal,
+					borderColor: '#90f74ce0',
+					backgroundColor: '#90f74ce0',
+				},
+			],
+		},
+		options: {
+			scales: {
+				y: {
+					beginAtZero: true,
+				},
+			},
+		},
+	})
+	return myChart3
+}
+
 // export const lineChart = () => {
 // 	const labels = Utils.months({ count: 7 })
 // 	const ctx2 = document.getElementById('line-chart').getContext('2d')
