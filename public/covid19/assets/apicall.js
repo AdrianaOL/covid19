@@ -1,7 +1,9 @@
+export const jwt = localStorage.getItem('jwt')
+// const URL = 'http://localhost:3000/api/'
 // getData
 export const getData = async () => {
 	try {
-		const response = await fetch('http://localhost:3000/api/total')
+		const response = await fetch(`http://localhost:3000/api/total`)
 		const { data } = await response.json()
 		return data
 	} catch (err) {
@@ -21,7 +23,8 @@ export const getContries = async (country) => {
 	}
 }
 
-export const getDeathsChile = async (jwt) => {
+export const getDeathsChile = async () => {
+	const jwt = localStorage.getItem('jwt')
 	try {
 		const response = await fetch('http://localhost:3000/api/deaths', {
 			method: 'GET',
@@ -35,7 +38,9 @@ export const getDeathsChile = async (jwt) => {
 		console.error(`Error: ${err}`)
 	}
 }
-export const getConfirmedChile = async (jwt) => {
+export const getConfirmedChile = async () => {
+	const jwt = localStorage.getItem('jwt')
+
 	try {
 		const response = await fetch('http://localhost:3000/api/confirmed', {
 			method: 'GET',
@@ -49,7 +54,9 @@ export const getConfirmedChile = async (jwt) => {
 		console.error(`Error: ${err}`)
 	}
 }
-export const getRecoveredChile = async (jwt) => {
+export const getRecoveredChile = async () => {
+	const jwt = localStorage.getItem('jwt')
+
 	try {
 		const response = await fetch('http://localhost:3000/api/recovered', {
 			method: 'GET',
