@@ -41,8 +41,8 @@ const chileSituationToggle = document.querySelector('#chile-situation')
 			const token = await postData(mail, password)
 			if (token){
 				logInToggle.classList.add('d-none')
-				logOutToggle.classList.toggle('d-none')
-				chileSituationToggle.classList.toggle('d-none')
+				logOutToggle.classList.remove('d-none')
+				chileSituationToggle.classList.remove('d-none')
 		
 			}
 			logOutToggle.addEventListener('click', () => {

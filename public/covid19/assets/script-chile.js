@@ -9,12 +9,15 @@ const logInToggle = document.querySelector('#log-in')
 const logOutToggle = document.querySelector('#log-out')
 // const chileSituationToggle = document.querySelector('#chile-situation')
 
-if (jwt) {
-  logInToggle.classList.add("d-none");
-  logOutToggle.classList.toggle("d-none");
-//   chileSituationToggle.classList.toggle("d-none");
-}
 
+logOutToggle.addEventListener('click', () => {
+	localStorage.clear()
+	window.location.href = 'index.html'
+})
+if (jwt) {
+	logInToggle.classList.add("d-none");
+	logOutToggle.classList.toggle("d-none");
+  }
 (async () => {
   const deaths = await getDeathsChile();
   const confirmed = await getConfirmedChile();
