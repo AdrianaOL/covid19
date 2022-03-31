@@ -1,3 +1,4 @@
+// importacion de modulos
 import {
 	getDeathsChile,
 	getConfirmedChile,
@@ -5,37 +6,50 @@ import {
 	jwt,
 } from './apicall.js'
 import { lineChart } from './graph.js'
+import { getElementBySelector, getElementByAllSelectors } from './functions.js'
 
-const logInToggle = document.querySelector('#log-in')
-const logOutToggle = document.querySelector('#log-out')
-const lineChartGraph = document.querySelector('#line-chart-graph')
-const showOnLoad = document.querySelectorAll('.show-on-load')
-const loaderWrapper = document.querySelector('.loader-wrapper')
+// selectores del DOM
+const logInToggleSelector = getElementBySelector('#log-in')
+const logOutToggleSelector = getElementBySelector('#log-out')
+const hideOnLoadSelector = getElementByAllSelectors('.hide-on-load')
+const loaderWrapperSelector = getElementBySelector('.loader-wrapper')
 
-
-logOutToggle.addEventListener('click', () => {
+// event listener al boton logout del navbar. Borra el jason web token y redirige a la pagina de inicio
+logOutToggleSelector.addEventListener('click', () => {
 	localStorage.clear()
 	window.location.href = 'index.html'
 })
+// condicion que verifica si el jason web token existe
 if (jwt) {
-	logInToggle.classList.add('d-none')
-	logOutToggle.classList.toggle('d-none')
+	// si el jason web token existe, agrega o remueve clases a los elementos del DOM
+	logInToggleSelector.classList.add('d-none')
+	logOutToggleSelector.classList.toggle('d-none')
+	// si el jwt no existe muestra un alert
 } else {
 	alert('Please log in')
 }
+
 ;(async () => {
+	// guarda los datos recibidos del api en las contantes confirmed, deaths, recovered
 	const deaths = await getDeathsChile()
 	const confirmed = await getConfirmedChile()
 	const recovered = await getRecoveredChile()
-	if(recovered){
-		showOnLoad.forEach(e => {
+	// condicion que verifica cuando los datos del api son recibidos
+	if (recovered) {
+		// foreach que a cada elemento de hideOnLoadSelector le agrega la clase d-block para poder ser mostrados
+		hideOnLoadSelector.forEach((e) => {
 			e.classList.add('d-block')
-		});
-		loaderWrapper.classList.add('d-none')
+		})
+		// oculta icono de carga
+		loaderWrapperSelector.classList.add('d-none')
 	}
+	
+	// filtrando y desglosando datos de la api
 	const deathsDate = deaths.map(({ date }) => date)
 	const deathsTotal = deaths.map(({ total }) => total)
 	const confirmedTotal = confirmed.map(({ total }) => total)
 	const recoveredTotal = recovered.map(({ total }) => total)
+
+	// llamando a la funcion lineChart para crear el grafico con sus parametros
 	lineChart(deathsDate, deathsTotal, confirmedTotal, recoveredTotal)
 })()

@@ -1,6 +1,9 @@
 export const jwt = localStorage.getItem('jwt')
+
+// variable que guarda la url del api
 const URL = 'http://localhost:3000/api'
-// getData
+
+// llamado del api para obtener los datos de los paises
 export const getData = async () => {
 	try {
 		const response = await fetch(`${URL}/total`)
@@ -11,6 +14,7 @@ export const getData = async () => {
 	}
 }
 
+// llamado al api para obtener los datos por pais atraves de parametro
 export const getContries = async (country) => {
 	try {
 		const response = await fetch(
@@ -23,6 +27,7 @@ export const getContries = async (country) => {
 	}
 }
 
+// llamado al api para obtener datos de muertos
 export const getDeathsChile = async () => {
 	const jwt = localStorage.getItem('jwt')
 	try {
@@ -38,6 +43,8 @@ export const getDeathsChile = async () => {
 		console.error(`Error: ${err}`)
 	}
 }
+
+// llamado al api para obtener datos de confirmados
 export const getConfirmedChile = async () => {
 	const jwt = localStorage.getItem('jwt')
 
@@ -54,6 +61,8 @@ export const getConfirmedChile = async () => {
 		console.error(`Error: ${err}`)
 	}
 }
+
+// llamado al api para obtener datos de recuperados
 export const getRecoveredChile = async () => {
 	const jwt = localStorage.getItem('jwt')
 

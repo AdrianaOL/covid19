@@ -1,8 +1,9 @@
+// importacion de modulos 
 import { getData, getContries, postData } from './apicall.js'
 import { barChart, modalGraph } from './graph.js'
 import { getValueByElement } from './functions.js'
 
-// selectores
+// selectores del DOM
 const modalItemTitleSelector = document.querySelector('#modal-item-title')
 const closeBtnModalSelector = document.querySelectorAll('.close-btn-modal')
 const tableSelector = document.querySelector('#table')
@@ -14,8 +15,9 @@ const chileSituationToggle = document.querySelector('#chile-situation')
 
 // function iife
 ;(async () => {
-	// filtrando datos
+	// guarda los datos recibidos del api en la constante data
 	const data = await getData()
+	// filtrando y desglosando datos de la api
 	const filteredData = data.filter((cases) => cases.confirmed > 6000000)
 	const countriesList = filteredData.map((location) => location.location)
 	const confirmed = filteredData.map((p) => p.confirmed)
@@ -34,21 +36,26 @@ const chileSituationToggle = document.querySelector('#chile-situation')
 		)
 		// muestra modal
 		myModal2.show()
+		// event listener para el evento submit del formulario de login
 		formSelector.addEventListener('submit', async (e) => {
 			e.preventDefault()
+			// obtiene el valor de los inputs del formulario
 			const mail = getValueByElement('#mail')
 			const password = getValueByElement('#password')
 			const token = await postData(mail, password)
+			// si el token es valido agrega o remueve clases a los elementos del DOM
 			if (token) {
 				logInToggle.classList.toggle('d-none')
 				logOutToggle.classList.remove('d-none')
 				chileSituationToggle.classList.remove('d-none')
 			}
+			// timeout para cerrar modal de login
 			setTimeout(() => {
 				myModal2.hide()
 			}, 500)
 		})
 	})
+	// event listener al boton logout, elimina el jason web token y recarga la pagina
 	logOutToggle.addEventListener('click', () => {
 		localStorage.clear()
 		location.reload()
@@ -79,13 +86,14 @@ const chileSituationToggle = document.querySelector('#chile-situation')
 			col += row
 			tableSelector.innerHTML = col
 		}
-		// seleccion de los botones
+		// seleccion de los botones(ver detalle) por la clase .boton-modal del innerHTML (linea 84 ;D)
 		const btns = document.querySelectorAll('.boton-modal')
 		// agregando event listener a cada boton
 		btns.forEach((btn) => {
 			btn.addEventListener('click', async (e) => {
-				// guardando el pais del dataset en una variable
+				// guardando el nombre del pais que contiene el dataset en una variable llamada location
 				const location = e.target.dataset.location
+				// creando un modal por cada click del boton ver detalle
 				const myModal = new bootstrap.Modal(
 					document.getElementById('modal-country'),
 					{
@@ -95,33 +103,38 @@ const chileSituationToggle = document.querySelector('#chile-situation')
 				)
 				// muestra modal
 				myModal.show()
-				// titulo del modal
+				// inserta titulo del pais en el modal
 				modalItemTitleSelector.innerHTML = location
-				// llamando al api, pasando el nombre del pais y guardando en una variable
+				// llamando al api, obteniendo los datos del pais seleccionado y guardandolos en una variable llamada countryData
 				const countryData = await getContries(location)
-				// destructuring a la variable countryData
+				// destructuring a la variable countryData que guarda los datos entre llaves en constantes separadas
 				const { confirmed, deaths, recovered, active } = countryData
+				// guarda en la constante graphModal la funcion que muestra el grafico pie y sus parametros
 				const graphModal = modalGraph(confirmed, deaths, recovered, active)
 
-				// event listener a los botones que cierrran el modal
-				// para destruir el grafico y poder actualizarlo
-				closeBtnModalSelector.forEach((element) => {
-					element.addEventListener('click', () => {
+				// event listener a los botones que cierran el modal
+				// para destruir el grafico y poder reutilizarlo
+				closeBtnModalSelector.forEach((e) => {
+					e.addEventListener('click', () => {
 						graphModal.destroy()
 					})
 				})
 			})
 		})
 	}
-	// creando table
+	// creando tabla
 	createTable(filteredData)
-	// create iife
-	;(() => {
-		const jwt = localStorage.getItem('jwt')
-		if (jwt) {
-			logInToggle.classList.add('d-none')
-			logOutToggle.classList.remove('d-none')
-			chileSituationToggle.classList.remove('d-none')
-		}
-	})()
+})()
+
+// iife para que los items se muestren u oculten en el DOM
+;(() => {
+	// guardando el jason web token en una variable llamada jwt
+	const jwt = localStorage.getItem('jwt')
+	// condicion que verifica si el jason web token existe
+	if (jwt) {
+	// si el jason web token existe, agrega o remueve clases a los elementos del DOM
+		logInToggle.classList.add('d-none')
+		logOutToggle.classList.remove('d-none')
+		chileSituationToggle.classList.remove('d-none')
+	}
 })()
