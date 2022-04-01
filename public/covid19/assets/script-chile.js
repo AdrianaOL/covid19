@@ -26,7 +26,7 @@ if (jwt) {
 	logOutToggleSelector.classList.toggle('d-none')
 	// si el jwt no existe muestra un alert
 } else {
-	alert('Please log in')
+	alert('Inicia sesión para ver el gráfico')
 }
 
 ;(async () => {

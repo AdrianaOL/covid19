@@ -56,7 +56,7 @@ export const modalGraph = (confirmed, deaths, recovered, active) => {
 	const myChart2 = new Chart(ctx2, {
 		type: 'pie',
 		data: {
-			labels: ['Confirmed', 'Deaths', 'recovered', 'active'],
+			labels: ['Confirmados', 'Muertos', 'Recuperados', 'Activos'],
 			datasets: [
 				{
 					label: '',
