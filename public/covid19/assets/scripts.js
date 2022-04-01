@@ -1,6 +1,6 @@
 // importacion de modulos
-import { getData, getContries, postData } from './apicall.js'
-import { barChart, modalGraph } from './graph.js'
+import { getData, getContries, postData, jwt } from './apicalls.js'
+import { barChart, modalGraph } from './graphs.js'
 import {
 	getElementBySelector,
 	getElementByAllSelectors,
@@ -59,7 +59,7 @@ const chileSituationToggle = getElementBySelector('#chile-situation')
 			}, 500)
 		})
 	})
-	// event listener al boton logout, elimina el jason web token y recarga la pagina
+	// event listener al boton logout, elimina el JSON web token y recarga la pagina
 	logOutToggle.addEventListener('click', () => {
 		localStorage.clear()
 		location.reload()
@@ -70,12 +70,12 @@ const chileSituationToggle = getElementBySelector('#chile-situation')
 	const createTable = (array) => {
 		let col = `
 				<tr>
-					<th scope="col">LOCATION</th>
-					<th scope="col">CONFIRMED</th>
-					<th scope="col">DEATHS</th>
-					<th scope="col">RECOVERED</th>
-					<th scope="col">ACTIVE</th>
-					<th scope="col">DETAILS</th>
+					<th scope="col">País</th>
+					<th scope="col">Confirmados</th>
+					<th scope="col">Muertos</th>
+					<th scope="col">Recuperados</th>
+					<th scope="col">Activos</th>
+					<th scope="col">Detalles</th>
 				</tr>`
 		for (let i = 0; i < array.length; i++) {
 			const row = `<tr>
@@ -132,11 +132,9 @@ const chileSituationToggle = getElementBySelector('#chile-situation')
 
 // iife para que los items se muestren u oculten en el DOM
 ;(() => {
-	// guardando el jason web token en una variable llamada jwt
-	const jwt = localStorage.getItem('jwt')
-	// condicion que verifica si el jason web token existe
+	// condicion que verifica si el JSON web token existe
 	if (jwt) {
-		// si el jason web token existe, agrega o remueve clases a los elementos del DOM
+		// si el JSON web token existe, agrega o remueve clases a los elementos del DOM
 		logInToggle.classList.add('d-none')
 		logOutToggle.classList.remove('d-none')
 		chileSituationToggle.classList.remove('d-none')

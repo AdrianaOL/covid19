@@ -38,6 +38,7 @@ h2 {
 	position: absolute;
 }
 /* icono que se muestra al cargar los datos del api */
+/* https://loading.io/css/ */
 .lds-ellipsis {
 	display: inline-block;
 	position: relative;

@@ -4,12 +4,11 @@ import {
 	getConfirmedChile,
 	getRecoveredChile,
 	jwt,
-} from './apicall.js'
-import { lineChart } from './graph.js'
-import { getElementBySelector, getElementByAllSelectors } from './functions.js'
+} from './apicalls.js'
+import { lineChart } from './graphs.js'
+import { getElementBySelector, getElementByAllSelectors, mapCallBack } from './functions.js'
 
 // selectores del DOM
-const logInToggleSelector = getElementBySelector('#log-in')
 const logOutToggleSelector = getElementBySelector('#log-out')
 const hideOnLoadSelector = getElementByAllSelectors('.hide-on-load')
 const loaderWrapperSelector = getElementBySelector('.loader-wrapper')
@@ -22,11 +21,10 @@ logOutToggleSelector.addEventListener('click', () => {
 // condicion que verifica si el JSON web token existe
 if (jwt) {
 	// si el JSON web token existe, agrega o remueve clases a los elementos del DOM
-	logInToggleSelector.classList.add('d-none')
 	logOutToggleSelector.classList.toggle('d-none')
 	// si el jwt no existe muestra un alert
 } else {
-	alert('Inicia sesión para ver el gráfico')
+	alert('Inicia sesión en la página principal para ver el gráfico')
 }
 
 ;(async () => {
@@ -46,9 +44,9 @@ if (jwt) {
 
 	// filtrando y desglosando datos de la api
 	const deathsDate = deaths.map(({ date }) => date)
-	const deathsTotal = deaths.map(({ total }) => total)
-	const confirmedTotal = confirmed.map(({ total }) => total)
-	const recoveredTotal = recovered.map(({ total }) => total)
+	const deathsTotal = mapCallBack(deaths)
+	const confirmedTotal = mapCallBack(confirmed)
+	const recoveredTotal = mapCallBack(recovered)
 
 	// llamando a la funcion lineChart para crear el grafico con sus parametros
 	lineChart(deathsDate, deathsTotal, confirmedTotal, recoveredTotal)
