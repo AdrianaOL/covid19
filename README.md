@@ -5,7 +5,7 @@
 
 - El proyecto se debe realizar en la carpeta public/covid19
 - Utilizar la siguiente ruta del navegador para revisar el desafío: http://localhost:3000/covid19
-## Materia aplicada
+## Materia aplicada 📝
 - Api's
 - Metodos del array
 - Modulos
