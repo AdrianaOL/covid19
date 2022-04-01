@@ -1,17 +1,18 @@
 // importacion de modulos 
 import { getData, getContries, postData } from './apicall.js'
 import { barChart, modalGraph } from './graph.js'
-import { getValueByElement } from './functions.js'
+import { getElementBySelector, getElementByAllSelectors } from './functions.js'
+
 
 // selectores del DOM
-const modalItemTitleSelector = document.querySelector('#modal-item-title')
-const closeBtnModalSelector = document.querySelectorAll('.close-btn-modal')
-const tableSelector = document.querySelector('#table')
-const logInSelector = document.querySelector('#log-in')
-const formSelector = document.querySelector('#form-log-in')
-const logInToggle = document.querySelector('#log-in')
-const logOutToggle = document.querySelector('#log-out')
-const chileSituationToggle = document.querySelector('#chile-situation')
+const modalItemTitleSelector = getElementBySelector('#modal-item-title')
+const closeBtnModalSelector = getElementByAllSelectors('.close-btn-modal')
+const tableSelector = getElementBySelector('#table')
+const logInSelector = getElementBySelector('#log-in')
+const formSelector = getElementBySelector('#form-log-in')
+const logInToggle = getElementBySelector('#log-in')
+const logOutToggle = getElementBySelector('#log-out')
+const chileSituationToggle = getElementBySelector('#chile-situation')
 
 // function iife
 ;(async () => {
@@ -86,8 +87,8 @@ const chileSituationToggle = document.querySelector('#chile-situation')
 			col += row
 			tableSelector.innerHTML = col
 		}
-		// seleccion de los botones(ver detalle) por la clase .boton-modal del innerHTML (linea 84 ;D)
-		const btns = document.querySelectorAll('.boton-modal')
+		// seleccion de los botones(ver detalle) por la clase .boton-modal del innerHTML (linea 84)
+		const btns = getElementByAllSelectors('.boton-modal')
 		// agregando event listener a cada boton
 		btns.forEach((btn) => {
 			btn.addEventListener('click', async (e) => {
