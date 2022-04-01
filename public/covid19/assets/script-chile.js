@@ -14,14 +14,14 @@ const logOutToggleSelector = getElementBySelector('#log-out')
 const hideOnLoadSelector = getElementByAllSelectors('.hide-on-load')
 const loaderWrapperSelector = getElementBySelector('.loader-wrapper')
 
-// event listener al boton logout del navbar. Borra el jason web token y redirige a la pagina de inicio
+// event listener al boton logout del navbar. Borra el JSON web token y redirige a la pagina de inicio
 logOutToggleSelector.addEventListener('click', () => {
 	localStorage.clear()
 	window.location.href = 'index.html'
 })
-// condicion que verifica si el jason web token existe
+// condicion que verifica si el JSON web token existe
 if (jwt) {
-	// si el jason web token existe, agrega o remueve clases a los elementos del DOM
+	// si el JSON web token existe, agrega o remueve clases a los elementos del DOM
 	logInToggleSelector.classList.add('d-none')
 	logOutToggleSelector.classList.toggle('d-none')
 	// si el jwt no existe muestra un alert
@@ -43,7 +43,7 @@ if (jwt) {
 		// oculta icono de carga
 		loaderWrapperSelector.classList.add('d-none')
 	}
-	
+
 	// filtrando y desglosando datos de la api
 	const deathsDate = deaths.map(({ date }) => date)
 	const deathsTotal = deaths.map(({ total }) => total)

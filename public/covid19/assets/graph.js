@@ -79,7 +79,12 @@ export const modalGraph = (confirmed, deaths, recovered, active) => {
 }
 
 // line chart
-export const lineChart = (deathsDate,deathsTotal,confirmedTotal,recoveredTotal) => {
+export const lineChart = (
+	deathsDate,
+	deathsTotal,
+	confirmedTotal,
+	recoveredTotal
+) => {
 	const ctx2 = document.getElementById('line-chart').getContext('2d')
 	const labels = deathsDate
 	const myChart3 = new Chart(ctx2, {

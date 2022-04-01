@@ -1,8 +1,11 @@
-// importacion de modulos 
+// importacion de modulos
 import { getData, getContries, postData } from './apicall.js'
 import { barChart, modalGraph } from './graph.js'
-import { getElementBySelector, getElementByAllSelectors } from './functions.js'
-
+import {
+	getElementBySelector,
+	getElementByAllSelectors,
+	getValueByElement,
+} from './functions.js'
 
 // selectores del DOM
 const modalItemTitleSelector = getElementBySelector('#modal-item-title')
@@ -133,7 +136,7 @@ const chileSituationToggle = getElementBySelector('#chile-situation')
 	const jwt = localStorage.getItem('jwt')
 	// condicion que verifica si el jason web token existe
 	if (jwt) {
-	// si el jason web token existe, agrega o remueve clases a los elementos del DOM
+		// si el jason web token existe, agrega o remueve clases a los elementos del DOM
 		logInToggle.classList.add('d-none')
 		logOutToggle.classList.remove('d-none')
 		chileSituationToggle.classList.remove('d-none')

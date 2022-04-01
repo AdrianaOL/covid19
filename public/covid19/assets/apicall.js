@@ -17,9 +17,7 @@ export const getData = async () => {
 // llamado al api para obtener los datos por pais atraves de parametro
 export const getContries = async (country) => {
 	try {
-		const response = await fetch(
-			`${URL}/countries/${country}`
-		)
+		const response = await fetch(`${URL}/countries/${country}`)
 		const { data } = await response.json()
 		return data
 	} catch (err) {

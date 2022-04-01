@@ -25,7 +25,7 @@ h2 {
 	transform: translateY(-5px);
 }
 /* clase para ocultar elementos mientras se cargan los datos del api (section line-chart-graph y footer) */
-.hide-on-load{
+.hide-on-load {
 	display: none;
 }
 /* wrapper para el icono animado de carga que centra el div y hace que ocupe todo el tamaño de la pagina */
